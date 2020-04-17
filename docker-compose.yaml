@@ -1,0 +1,24 @@
+version: "3"
+services:
+  webengine-service:
+    image: sonarqube:8.2-community
+    environment:
+      - SONAR_JDBC_USERNAME=sonar
+      - SONAR_JDBC_PASSWORD=sonar
+      - SONAR_JDBC_URL=jdbc:postgresql://database-service:5432/sonar
+      - SONAR_JDBC_DIALECT=postgresql
+      - SONAR_JDBC_DRIVERCLASSNAME=org.postgresql.Driver
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    depends_on:
+      - database-service
+
+  database-service:
+    build:
+      context: database/
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_PASSWORD="3ce6f37dc1b8e88f9c4e03c14ce3d993"
+    ports:
+      - "5432:5432"
