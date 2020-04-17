@@ -13,6 +13,7 @@ services:
       - "9001:9001"
     depends_on:
       - database-service
+    container_name: "sonar_webengine"
 
   database-service:
     build:
@@ -20,5 +21,8 @@ services:
       dockerfile: Dockerfile
     environment:
       - POSTGRES_PASSWORD="3ce6f37dc1b8e88f9c4e03c14ce3d993"
+    volumes:
+      - "~/dockervolume/sonar-pgdata:/var/lib/postgresql/data"
     ports:
       - "5432:5432"
+    container_name: "sonar_pgsql"
