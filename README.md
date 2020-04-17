@@ -31,3 +31,7 @@ make stop
 
 Cleaning process removes unused containers. Sonar data is persisted in DB level on volume created in **~/dockervolume/sonar-data** directory.
 This step can be performed without concern about loosing sonar results.
+
+```bash
+make clean
+```
